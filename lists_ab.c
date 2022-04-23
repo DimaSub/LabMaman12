@@ -13,6 +13,15 @@
 #include <stdlib.h>
 
 int main() {
-    printf("Hello, World!\n");
+
+    while(user_length<1 || user_length>100){
+        printf("Please enter a valid length for the scalars:");
+        scanf("%d", &user_length);
+    }
+
+    int a[5] = {10,20,30,40,50};
+    double *q;
+    q = (double *)(a+3);
+    printf("%d", *((int *)q));
     return 0;
 }
