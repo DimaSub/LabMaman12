@@ -11,17 +11,36 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
+int start = -1;
 
 int main() {
 
-    while(user_length<1 || user_length>100){
-        printf("Please enter a valid length for the scalars:");
-        scanf("%d", &user_length);
+    int *p = (int *)malloc(sizeof(int));
+    int *q = p;
+    int counter = 0;
+    int a[5];
+    char c = 0;
+
+
+    while(start!=1 && start!=2){
+        printf("Please choose your input preferences:\n 1 - File input\n 2 - Keyboard input\n\n");
+        scanf("%d", &start);
+
     }
 
-    int a[5] = {10,20,30,40,50};
-    double *q;
-    q = (double *)(a+3);
-    printf("%d", *((int *)q));
+    if (start==2) {
+        printf("\nPlease enter any character you want:\n");
+        printf("(Press Ctrl+D to stop receiving characters and get an output)\n");
+        while (c != EOF) {
+            c = fgetc(stdin);
+            p[counter] = c;
+            counter++;
+        }
+
+        printf("End:\n");
+    }
+
     return 0;
 }
