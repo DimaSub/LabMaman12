@@ -40,10 +40,10 @@ void input_storage(int input){
 void input_print(){
     printf("\n\nAn organized list of your input:\n\n");
     for (i=0; i<counter ; i++) {
-            if (q[i]==10) printf("Enter");
-            if (q[i]==32) printf("Space");
-            if (q[i]==9) printf("Tab");
-            else printf("%c    ", q[i]);
+            if (q[i]==9) printf("  Tab   ");
+            else if (q[i]==10) printf(" Enter  ");
+            else if (q[i]==32) printf(" Space  ");
+            else printf("   %c    ", q[i]);
             if ((i+1)%8==0) printf("\n");
     }
 }
@@ -85,6 +85,7 @@ int main() {
     if (start==2) {
         printf("\nPlease enter any character you want:\n");
         printf("(Press Ctrl+D to stop inputting characters and get an output)\n");
+        fgetc(stdin);
         while ((char_input = fgetc(stdin)) != EOF) {
             input_storage(char_input);
             if (isalnum(char_input)) counter_an++;
@@ -94,7 +95,7 @@ int main() {
 
     input_print();
 
-    printf("\nThe number of alpha-numeric characters entered: %d\n", counter_an);
+    printf("\n\nThe number of alpha-numeric characters entered: %d\n", counter_an);
     printf("The number of total characters entered: %d\n", counter);
 
     free(p);
