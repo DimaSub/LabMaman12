@@ -13,16 +13,26 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-int start = -1;
+/*Global variables declaration.*/
+int start = 0;
+int counter_an = 0;
+int counter = 0;
+int char_input;
+
+
+/*A function that stores users input in a dynamically allocated memory.*/
+void input_storage(int input){
+
+}
 
 int main() {
-
     int *p = (int *)malloc(sizeof(int));
-    int *q = p;
-    int counter = 0;
-    int a[5];
-    char c = 0;
+    if (!p) {
+        printf("Memory allocation failed");
+        exit(0);
+    }
 
+    int *q = p;
 
     while(start!=1 && start!=2){
         printf("Please choose your input preferences:\n 1 - File input\n 2 - Keyboard input\n\n");
@@ -32,14 +42,15 @@ int main() {
 
     if (start==2) {
         printf("\nPlease enter any character you want:\n");
-        printf("(Press Ctrl+D to stop receiving characters and get an output)\n");
-        while (c != EOF) {
-            c = fgetc(stdin);
-            p[counter] = c;
+        printf("(Press Ctrl+D to stop inputting characters and get an output)\n");
+        while ((char_input = fgetc(stdin)) != EOF) {
+            printf("%d\n", char_input);
+//            input_storage(putchar(c));
+            if (isalnum(char_input)) counter_an++;
             counter++;
         }
-
-        printf("End:\n");
+    printf("The number of alpha-numeric characters entered: %d\n", counter_an);
+    printf("The number of total characters entered: %d\n", counter);
     }
 
     return 0;
